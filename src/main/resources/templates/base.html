@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${tituloPagina}"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <th:block th:insert="~{componentes/navbar :: navbar}"></th:block>
+    
+    <div class="container" th:fragment="conteudo">
+        <h1 th:text="${tituloPagina}"></h1>
+        <!-- ... conteúdo da página ... -->
+    </div>
+    <th:block th:insert="~{componentes/footer :: footer}"></th:block>
+</body>
+</html>
