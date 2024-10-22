@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title th:text="${tituloPagina}"></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<body>
-    <th:block th:insert="~{ ~base:: navbar}"></th:block>
+  <th:block th:insert="~{componentes/head :: heads}"></th:block>
+    <head>
+        <title th:text="${tituloPagina}"></title>
+    </head>
+    <style>
+        body,
+        html {
+          height: 100%;
+          margin: 0;
+        }
+    
+        main {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 90vh;
+        }
+    
+        h1 {
+          padding: 2rem;
+          text-align: center;
+          font-family: Arial, sans-serif;
+        }
+      </style>
+  <body>
+    <th:block th:insert="~{componentes/navbar :: navbar}"></th:block>
 
     <div class="container" th:fragment="conteudo">
-        <h1 th:text="${tituloPagina}"></h1>
-        <!-- ... conteúdo da página ... -->
+      <main>
+        <h1>Sistema de Notificação de Casos de Dengue e Chikungunya.</h1>
+      </main>
     </div>
-</body>
+    <th:block th:insert="~{componentes/footer :: scripts}"></th:block>
+  </body>
 </html>
