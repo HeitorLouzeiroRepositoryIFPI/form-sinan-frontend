@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+  <th:block th:insert="~{componentes/head :: heads}"></th:block>
+    <head>
+        <title th:text="${tituloPagina}"></title>
+    </head>
+    <body>
+        <th:block th:insert="~{componentes/navbar :: navbar}"></th:block>
+    
+        <div class="container" th:fragment="conteudo">
+            <h1 class="container-fluid p-4">Notificação enviada com sucesso.</h1>
+        </div>
+        <th:block th:insert="~{componentes/footer :: scripts}"></th:block>
+    </body>
+</html>

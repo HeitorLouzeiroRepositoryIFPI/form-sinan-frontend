@@ -5,303 +5,299 @@
         <title th:text="${tituloPagina}"></title>
     </head>
 
-  <body>
-    <th:block th:insert="~{componentes/navbar :: navbar}"></th:block>
-
-    <div class="container" th:fragment="conteudo">
-      <main>
-        <div class="container-fluid p-4">
-            <form action="" method="get">
-                <div class="form-group">
-                    <label for="tipoNotificacao">Tipo de Notificação</label>
-                    <input type="text" class="form-control" id="tipoNotificacao" value="2 - Individual" />
+    <body>
+        <th:block th:insert="~{componentes/navbar :: navbar}"></th:block>
+    
+        <div class="container" th:fragment="conteudo">
+            <main>
+                <div class="container-fluid p-4">
+                        <form action="/notificacao" method="post" th:object="${notificacao}">
+                                <div class="form-group">
+                                        <label for="tipoNotificacao">Tipo de Notificação</label>
+                                        <input type="text" class="form-control" id="tipoNotificacao" th:field="*{tipoNotificacao}" />
+                                </div>
+                                <div class="row">
+                                        <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="agravoDoenca">Agravo/doença</label>
+                                                        <select class="form-control" id="agravoDoenca" th:field="*{agravoDoenca}">
+                                                                <option value="1">1- DENGUE</option>
+                                                                <option value="2">2- CHIKUNGUNYA</option>
+                                                        </select>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="dataNotificacao">Data da Notificacão</label>
+                                                        <input type="date" class="form-control" id="dataNotificacao" th:field="*{dataNotificacao}" />
+                                                </div>
+                                        </div>
+                                </div>
+        
+                                <div class="row">
+                                        <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="uf">UF</label>
+                                                        <input type="text" class="form-control" id="uf" maxlength="2" th:field="*{uf}" />
+                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="municipioNotificacao">Município de Notificação</label>
+                                                        <input type="text" class="form-control" id="municipioNotificacao" th:field="*{municipioNotificacao}" />
+                                                </div>
+                                        </div>
+                                </div>
+        
+                                <div class="row">
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                        <label for="unidadeSaude">Unidade de Saúde (ou outra fonte notificadora)</label>
+                                                        <input type="text" class="form-control" id="unidadeSaude" th:field="*{unidadeSaude}" />
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                        <label for="codigoUnidade">Código da unidade</label>
+                                                        <input type="text" class="form-control" id="codigoUnidade" th:field="*{codigoUnidade}" />
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                        <label for="dataPrimeirosSintomas">Data dos Primeiros Sintomas</label>
+                                                        <input type="date" class="form-control" id="dataPrimeirosSintomas" th:field="*{dataPrimeirosSintomas}" />
+                                                </div>
+                                        </div>
+                                </div>
+        
+                                <div class="row">
+                                        <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="nomePaciente">Nome do Paciente</label>
+                                                        <input type="text" class="form-control" id="nomePaciente" th:field="*{nomePaciente}" />
+                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="dataNascimento">Data de Nascimento</label>
+                                                        <input type="date" class="form-control" id="dataNascimento" th:field="*{dataNascimento}" required />
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-md-2">
+                                                <div class="form-group">
+                                                        <label for="idade">(OU) Idade</label>
+                                                        <input type="number" class="form-control" id="idade" min="0" th:field="*{idade}" />
+                                                </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                                <div class="form-group">
+                                                        <label for="tipoIdade"></label>
+                                                        <select class="form-control" id="tipoIdade" th:field="*{tipoIdade}">
+                                                                <option value="H">Hora</option>
+                                                                <option value="D">Dias</option>
+                                                                <option value="M">Mês</option>
+                                                                <option value="A">Ano</option>
+                                                        </select>
+                                                </div>
+                                        </div>
+        
+                                        <div class="col-md-2">
+                                                <div class="form-group">
+                                                        <label for="sexo">Sexo</label>
+                                                        <select class="form-control" id="sexo" th:field="*{sexo}">
+                                                                <option value="M">Masculino</option>
+                                                                <option value="F">Feminino</option>
+                                                                <option value="1">Ignorado</option>
+                                                        </select>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                                <div class="form-group">
+                                                        <label for="gestante">Gestante</label>
+                                                        <select class="form-control" id="gestante" th:field="*{gestante}">
+                                                                <option value="1">1°Trimestre</option>
+                                                                <option value="2">2°Trimestre</option>
+                                                                <option value="3">3°Trimestre</option>
+                                                                <option value="4">Idade gestacional Ignorada</option>
+                                                                <option value="5">Não</option>
+                                                                <option value="6">Não se aplica</option>
+                                                                <option value="9">Ignorado</option>
+                                                        </select>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                                <div class="form-group">
+                                                        <label for="racaCor">Raça/Cor</label>
+                                                        <select class="form-control" id="racaCor" th:field="*{racaCor}">
+                                                                <option value="1">Branca</option>
+                                                                <option value="2">Preta</option>
+                                                                <option value="3">Amarela</option>
+                                                                <option value="4">Parda</option>
+                                                                <option value="5">Indígena</option>
+                                                                <option value="9">Ignorado</option>
+                                                        </select>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                                <div class="form-group">
+                                                        <label for="escolaridade">Escolaridade</label>
+                                                        <select class="form-control" id="escolaridade" th:field="*{escolaridade}">
+                                                                <option value="0">Analfabeto</option>
+                                                                <option value="1">
+                                                                        1ª a 4ª série incompleta do EF (antigo primário ou 1º grau)
+                                                                </option>
+                                                                <option value="2">
+                                                                        4ª série completa do EF (antigo primário ou 1º grau)
+                                                                </option>
+                                                                <option value="3">
+                                                                        5ª à 8ª série incompleta do EF (antigo ginásio ou 1º grau)
+                                                                </option>
+                                                                <option value="4">
+                                                                        Ensino fundamental completo (antigo ginásio ou 1º grau)
+                                                                </option>
+                                                                <option value="5">
+                                                                        Ensino médio incompleto (antigo colegial ou 2º grau)
+                                                                </option>
+                                                                <option value="6">
+                                                                        Ensino médio completo (antigo colegial ou 2º grau)
+                                                                </option>
+                                                                <option value="7">Educação superior incompleta</option>
+                                                                <option value="8">Educação superior completa</option>
+                                                                <option value="9">Ignorado</option>
+                                                                <option value="10">Não se aplica</option>
+                                                        </select>
+                                                </div>
+                                        </div>
+                                </div>
+        
+                                <div class="row">
+                                        <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="cartaoSus">Número do Cartão SUS</label>
+                                                        <input type="text" class="form-control" id="cartaoSus" min="0" th:field="*{cartaoSus}" />
+                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="nomeMae">Nome da mãe</label>
+                                                        <input type="text" class="form-control" id="nomeMae" th:field="*{nomeMae}" />
+                                                </div>
+                                        </div>
+                                </div>
+        
+                                <div class="row">
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                        <label for="ufResidencia">UF</label>
+                                                        <input type="text" class="form-control" id="ufResidencia" maxlength="2" th:field="*{ufResidencia}" />
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                        <label for="municipioResidencia">Município de Residência</label>
+                                                        <input type="text" class="form-control" id="municipioResidencia" th:field="*{municipioResidencia}" />
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                        <label for="distrito">Distrito</label>
+                                                        <input type="text" class="form-control" id="distrito" th:field="*{distrito}" />
+                                                </div>
+                                        </div>
+                                </div>
+        
+                                <div class="row">
+                                        <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="bairro">Bairro</label>
+                                                        <input type="text" class="form-control" id="bairro" th:field="*{bairro}" />
+                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="logradouro">Logradouro (rua, avenida,...)</label>
+                                                        <input type="text" class="form-control" id="logradouro" th:field="*{logradouro}" />
+                                                </div>
+                                        </div>
+                                </div>
+        
+                                <div class="row">
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                        <label for="numero">Número</label>
+                                                        <input type="text" class="form-control" id="numero" th:field="*{numero}" />
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                        <label for="complemento">Complemento (apto., casa, ...)</label>
+                                                        <input type="text" class="form-control" id="complemento" th:field="*{complemento}" />
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                        <label for="geoCampo1">Geo campo 1</label>
+                                                        <input type="text" class="form-control" id="geoCampo1" th:field="*{geoCampo1}" />
+                                                </div>
+                                        </div>
+                                </div>
+        
+                                <div class="row">
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                        <label for="geoCampo2">Geo campo 2</label>
+                                                        <input type="text" class="form-control" id="geoCampo2" th:field="*{geoCampo2}" />
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                        <label for="pontoReferencia">Ponto de Referência</label>
+                                                        <input type="text" class="form-control" id="pontoReferencia" th:field="*{pontoReferencia}" />
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                        <label for="cep">CEP</label>
+                                                        <input type="text" class="form-control" id="cep" th:field="*{cep}" />
+                                                </div>
+                                        </div>
+                                </div>
+        
+                                <div class="row">
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                        <label for="telefone"> (DDD) Telefone</label>
+                                                        <input type="text" class="form-control" id="telefone" th:field="*{telefone}" />
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                        <label for="zona">Zona</label>
+                                                        <select class="form-control" id="zona" th:field="*{zona}">
+                                                                <option value="1">Urbana</option>
+                                                                <option value="2">Rural</option>
+                                                                <option value="3">Periurbana</option>
+                                                                <option value="9">Ignorado</option>
+                                                        </select>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                        <label for="pais">País (se residente fora do Brasil)</label>
+                                                        <input type="text" class="form-control" id="pais" th:field="*{pais}" />
+                                              </div>
+                                        </div>
+                                </div>
+        
+                                <br>
+                                <br>
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                        </form>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="agravoDoenca">Agravo/doença</label>
-                            <select class="form-control" id="agravoDoenca">
-                                <option value="1">1- DENGUE</option>
-                                <option value="2">2- CHIKUNGUNYA</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="dataNotificacao">Data da Notificacão</label>
-                            <input type="date" class="form-control" id="dataNotificacao" />
-                        </div>
-                    </div>
-                </div>
-    
-    
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="uf">UF</label>
-                            <input type="text" class="form-control" id="uf" maxlength="2" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="municipioNotificacao">Município de Notificação</label>
-                            <input type="text" class="form-control" id="municipioNotificacao" />
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="unidadeSaude">Unidade de Saúde (ou outra fonte notificadora)</label>
-                            <input type="text" class="form-control" id="unidadeSaude" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="codigoUnidade">Código da unidade</label>
-                            <input type="text" class="form-control" id="codigoUnidade" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="dataPrimeirosSintomas">Data dos Primeiros Sintomas</label>
-                            <input type="date" class="form-control" id="dataPrimeirosSintomas" />
-                        </div>
-                    </div>
-                </div>
-    
-    
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="nomePaciente">Nome do Paciente</label>
-                            <input type="text" class="form-control" id="nomePaciente" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="dataNascimento">Data de Nascimento</label>
-                            <input type="date" class="form-control" id="dataNascimento" required />
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="idade">(OU) Idade</label>
-                            <input type="positivenumber" class="form-control" id="idade" min="0" />
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="tipoIdade"></label>
-                            <select class="form-control" id="tipoIdade">
-                                <option value="H">Hora</option>
-                                <option value="D">Dias</option>
-                                <option value="M">Mês</option>
-                                <option value="A">Ano</option>
-                            </select>
-                        </div>
-                    </div>
-    
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="sexo">Sexo</label>
-                            <select class="form-control" id="sexo">
-                                <option value="M">Masculino</option>
-                                <option value="F">Feminino</option>
-                                <option value="1">Ignorado</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="gestante">Gestante</label>
-                            <select class="form-control" id="gestante">
-                                <option value="1">1°Trimestre</option>
-                                <option value="2">2°Trimestre</option>
-                                <option value="3">3°Trimestre</option>
-                                <option value="4">Idade gestacional Ignorada</option>
-                                <option value="5">Não</option>
-                                <option value="6">Não se aplica</option>
-                                <option value="9">Ignorado</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="racaCor">Raça/Cor</label>
-                            <select class="form-control" id="racaCor">
-                                <option value="1">Branca</option>
-                                <option value="2">Preta</option>
-                                <option value="3">Amarela</option>
-                                <option value="4">Parda</option>
-                                <option value="5">Indígena</option>
-                                <option value="9">Ignorado</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="escolaridade">Escolaridade</label>
-                            <select class="form-control" id="escolaridade">
-                                <option value="0">Analfabeto</option>
-                                <option value="1">
-                                    1ª a 4ª série incompleta do EF (antigo primário ou 1º grau)
-                                </option>
-                                <option value="2">
-                                    4ª série completa do EF (antigo primário ou 1º grau)
-                                </option>
-                                <option value="3">
-                                    5ª à 8ª série incompleta do EF (antigo ginásio ou 1º grau)
-                                </option>
-                                <option value="4">
-                                    Ensino fundamental completo (antigo ginásio ou 1º grau)
-                                </option>
-                                <option value="5">
-                                    Ensino médio incompleto (antigo colegial ou 2º grau)
-                                </option>
-                                <option value="6">
-                                    Ensino médio completo (antigo colegial ou 2º grau)
-                                </option>
-                                <option value="7">Educação superior incompleta</option>
-                                <option value="8">Educação superior completa</option>
-                                <option value="9">Ignorado</option>
-                                <option value="10">Não se aplica</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="cartaoSus">Número do Cartão SUS</label>
-                            <input type="text" class="form-control" id="cartaoSus" min="0" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="nomeMae">Nome da mãe</label>
-                            <input type="text" class="form-control" id="nomeMae" />
-                        </div>
-                    </div>
-                </div>
-    
-    
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="ufResidencia">UF</label>
-                            <input type="text" class="form-control" id="ufResidencia" maxlength="2" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="municipioResidencia">Município de Residência</label>
-                            <input type="text" class="form-control" id="municipioResidencia" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="distrito">Distrito</label>
-                            <input type="text" class="form-control" id="distrito" />
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="bairro">Bairro</label>
-                            <input type="text" class="form-control" id="bairro" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="logradouro">Logradouro (rua, avenida,...)</label>
-                            <input type="text" class="form-control" id="logradouro" />
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="numero">Número</label>
-                            <input type="text" class="form-control" id="numero" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="complemento">Complemento (apto., casa, ...)</label>
-                            <input type="text" class="form-control" id="complemento" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="geoCampo1">Geo campo 1</label>
-                            <input type="text" class="form-control" id="geoCampo1" />
-                        </div>
-                    </div>
-                </div>
-    
-    
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="geoCampo2">Geo campo 2</label>
-                            <input type="text" class="form-control" id="geoCampo2" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="pontoReferencia">Ponto de Referência</label>
-                            <input type="text" class="form-control" id="pontoReferencia" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="cep">CEP</label>
-                            <input type="text" class="form-control" id="cep" />
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="telefone"> (DDD) Telefone</label>
-                            <input type="text" class="form-control" id="telefone" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="zona">Zona</label>
-                            <select class="form-control" id="zona">
-                                <option value="1">Urbana</option>
-                                <option value="2">Rural</option>
-                                <option value="3">Periurbana</option>
-                                <option value="9">Ignorado</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="pais">País (se residente fora do Brasil)</label>
-                            <input type="text" class="form-control" id="pais" />
-                        </div>
-                    </div>
-                </div>
-    
-                <br>
-                <br>
-                <button type="submit" class="btn btn-primary">Enviar</button>
-            </form>
+            </main>
         </div>
-      </main>
-    </div>
-    <th:block th:insert="~{componentes/footer :: scripts}"></th:block>
-  </body>
+        <th:block th:insert="~{componentes/footer :: scripts}"></th:block>
+    </body>
 </html>

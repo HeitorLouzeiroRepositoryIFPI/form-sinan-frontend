@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+  <th:block th:insert="~{componentes/head :: heads}"></th:block>
+    <head>
+        <title th:text="${tituloPagina}"></title>
+    </head>
+<body class="bg-light">
+    <th:block th:insert="~{componentes/navbar :: navbar}"></th:block>
+
+
+    <div class="container shadow p-4 bg-white mx-auto mt-5 w-75">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">Nome do Paciente</th>
+                <th scope="col">Data Notificacao</th>
+                <th scope="col">Municipio Notificacao</th>
+                <th scope="col">Telefone</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="notificacao : ${notificacoes}">
+                <td th:text="${notificacao.nomePaciente}"></td>
+                <td th:text="${#temporals.format(notificacao.dataNotificacao, 'dd/MM/yyyy')}"></td>
+                <td th:text="${notificacao.municipioNotificacao}"></td>
+                <td th:text="${notificacao.telefone}"></td>
+                <td>
+                    <button>
+                        <a th:href="@{/notificacao/{id}(id=${notificacao.id})}" class="btn btn-primary">Detalhes</a>
+                    </button>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <th:block th:insert="~{componentes/footer :: scripts}"></th:block>
+</body>
+</html>
