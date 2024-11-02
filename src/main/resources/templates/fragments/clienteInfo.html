@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+  <th:block th:insert="~{componentes/head :: heads}"></th:block>
+<body>
+    <div th:fragment="informacoes" style="margin-top:20px;">
+        <table class="table table-striped-columns">
+            <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">CPF</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="user, iterStat : ${users}">
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.cpf}"></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</body>
+</html>
